@@ -28,6 +28,12 @@ except KeyError:
 app = create_app(app_config)
 Migrate(app, db)
 
+class Data(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    value = db.Column(db.String(50))
+    label = db.Column(db.String(50))
+
 if not DEBUG:
     Minify(app=app, html=True, js=False, cssless=False)
 
